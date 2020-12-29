@@ -3,6 +3,7 @@ import RouteWithSubRoutes from "./components/routewithsubroutes";
 import routes from "./router";
 import {Switch} from "react-router-dom";
 import Header from "./components/header";
+import PlayBar from "./views/playbar";
 
 
 function App() {
@@ -18,12 +19,9 @@ function App() {
                 </Switch>
             </div>
         </Suspense>
-
-
-
+        <PlayBar/>
     </>)
 }
-
 
 
 export default App;

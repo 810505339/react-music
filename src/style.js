@@ -9,4 +9,9 @@ export const GlobalStyle = createGlobalStyle`
     .separate {
       padding: 5px 0;
     }
+    .ellipsis{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }`

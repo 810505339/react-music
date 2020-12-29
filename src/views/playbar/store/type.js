@@ -1,0 +1,1 @@
+export const SET_CURRENTSONG = 'set_currentSong'

@@ -26,7 +26,7 @@ function Home() {
         if (!singerList.length) {
             dispatch(setAsyncSingerListAction(30))
         }
-    }, [banners.length, songList.length, singerList.length, dispatch])
+    }, [dispatch])
 
 
     return (<>
