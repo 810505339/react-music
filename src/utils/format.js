@@ -9,3 +9,10 @@ export const forMatPlayCount = (count) => {
     }
     return count
 }
+
+//转换播放时间
+export const forMatPlayTime = (second) => {
+    const dayjs = require('dayjs')
+    return dayjs(second).format('mm:ss')
+
+}

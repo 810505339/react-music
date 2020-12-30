@@ -7,3 +7,7 @@ export function detailApi(ids) {
 export function lyricApi(id) {
     return axios.get(`/lyric?id=${id}`)
 }
+
+export function getUrl(id) {
+    return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+}

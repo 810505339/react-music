@@ -1,4 +1,7 @@
-import  homeReducer from '../views/home/store/reducer'
+import homeReducer from '../views/home/store/reducer'
+import PlayReducer from '../views/playbar/store/reducer'
+
 export default {
-    homeReducer
+    homeReducer,
+    PlayReducer
 }

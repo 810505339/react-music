@@ -10,9 +10,32 @@ export const PlayBarWrapper = styled.div`
   z-index: 100;
   background: #fff;
   box-shadow: 0 5px 40px -1px rgba(2, 10, 18, .1);
-  display: flex;
-  align-items: center;
+
   padding: 0 20px;
+
+  .ant-slider-track {
+    background-color: #e03997;
+  }
+
+  .ant-slider-handle {
+    border: solid 2px #683a71;
+  }
+
+  .ant-slider:hover .ant-slider-track {
+    background-color: #e03997;
+  }
+
+  .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {
+    border-color: #683a71;
+  }
+
+  .play-bar {
+    width: 1380px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+  }
 
   .icon-wrapper {
     display: flex;
@@ -26,10 +49,11 @@ export const PlayBarWrapper = styled.div`
 
     .name {
       padding-left: 20px;
+      text-align: center;
 
       h2 {
         margin: 0;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         color: #333;
       }
@@ -37,11 +61,12 @@ export const PlayBarWrapper = styled.div`
       p {
         font-size: 12px;
         color: #999;
-        margin: 10px 0 0 0;
+        margin: 7px 0 0 0;
       }
     }
 
   }
+
 
   .btn-group {
     padding: 0 20px;
@@ -58,4 +83,50 @@ export const PlayBarWrapper = styled.div`
       }
     }
   }
+
+  .slider-wrapper {
+    display: flex;
+    align-items: center;
+
+    .slider {
+      width: 580px;
+    }
+
+    .time {
+      padding: 0 10px;
+      width: 100px;
+      box-sizing: border-box;
+    }
+
+    .sound-wrapper {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 20px;
+
+      .btn {
+        font-size: 25px;
+        padding: 0 5px;
+      }
+
+      .slider {
+        width: 120px;
+      }
+    }
+
+
+  }
+
+  .icon-group {
+    display: flex;
+    align-items: center;
+
+    .btn {
+      font-size: 30px;
+      margin: 0 5px;
+
+    }
+  }
+
+
 `

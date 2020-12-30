@@ -9,9 +9,14 @@ export const GlobalStyle = createGlobalStyle`
     .separate {
       padding: 5px 0;
     }
-    .ellipsis{
+
+    .ellipsis {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .btn {
+      cursor: pointer;
     }
   }`
