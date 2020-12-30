@@ -1,5 +1,5 @@
 import {SET_CURRENTSONG, SET_LYRIC} from './type'
-import {detailApi} from "../../../api/song";
+import {detailApi, lyricApi} from "../../../api/song";
 
 export const setCurrentSongAction = (currentSong) => ({type: SET_CURRENTSONG, currentSong})
 export const seLyricAction = (lyric) => ({type: SET_LYRIC, lyric})
@@ -11,6 +11,5 @@ export const setAsyncCurrentSongAction = (ids) => {
         dispatch(setCurrentSongAction(songs[0]))
         const {lrc} = await lyricApi(ids)
         dispatch(seLyricAction(lrc.lyric))
-
     }
 }
