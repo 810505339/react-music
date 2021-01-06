@@ -11,3 +11,7 @@ export function personalizedApi(limit) {
 export function artistsApi(limit) {
     return axios.get(`/top/artists?offset=1&limit=${limit}`)
 }
+
+export function newSongApi(limit) {
+    return axios.get(`/personalized/newsong?limit=${limit}`)
+}

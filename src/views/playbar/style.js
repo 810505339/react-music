@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const PlayBarWrapper = styled.div`
+
   position: fixed;
   right: 0;
   left: 0;
@@ -35,6 +36,8 @@ export const PlayBarWrapper = styled.div`
     align-items: center;
     height: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 110;
   }
 
   .icon-wrapper {
@@ -128,5 +131,83 @@ export const PlayBarWrapper = styled.div`
     }
   }
 
+  .bar-drawer {
+    margin: 0 auto;
+    width: 986px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 74px;
+    z-index: 99;
 
+    .ant-drawer, .ant-drawer-content-wrapper, .ant-drawer-content {
+      border-radius: 10px 10px 0 0;
+    }
+
+    .ant-drawer-mask {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 74px;
+      top: 0;
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .ant-drawer-header {
+      border: 0;
+    }
+
+    .ant-drawer-body {
+      display: flex;
+      align-items: center;
+      flex-grow: 0;
+      padding: 0;
+    }
+  }
+
+
+`
+
+
+export const Title = styled.div`
+  display: flex;
+
+  .play-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+
+    .clear {
+      font-size: 12px;
+    }
+  }
+
+  .lyrics-header {
+    flex: 1;
+  }
+`
+
+
+export const PlayList = styled.div`
+  flex: 1;
+ 
+
+  .play-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    
+
+    span {
+      flex: 1;
+    }
+
+    .name {
+      flex: 6;
+    }
+  }
 `

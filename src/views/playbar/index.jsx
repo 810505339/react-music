@@ -1,15 +1,16 @@
-import React, {useEffect, useState, useCallback} from 'react'
+import React, {useEffect, useState} from 'react'
 import {PlayBarWrapper} from "./style";
 import Icon from "../../components/icon";
-import {Slider} from "antd";
+import {Drawer, Slider} from "antd";
 import {useDispatch, useSelector, shallowEqual} from 'react-redux'
 import {setAsyncCurrentSongAction} from './store/action'
 import {forMatPlayTime} from "../../utils/format";
 import useAudio from "../../hooks/useAudio";
+import useLyric from "../../hooks/useLyric";
+import {BarPlayList} from "./components/BarPlayList";
+import {DrawerTitle} from "./components/DrawerTitle";
 
 const PlayBar = () => {
-
-
     //播放时间
     const [currentTime, setCurrentTime] = useState(0)
     //是否正在播放
@@ -19,18 +20,28 @@ const PlayBar = () => {
 
     //滑块进度
     const [playSchedule, setPlaySchedule] = useState(0)
+    //修改音量
+    const [volumeSchedule, setVolumeSchedule] = useState(100)
+
+    //修改弹出成状态
+    const [layerState, setLayState] = useState(false)
 
 
-    const {currentSong} = useSelector(state => ({currentSong: state.PlayReducer.get('currentSong')}), shallowEqual)
-
-    const {audioRef} = useAudio(currentSong.id)
+    const {currentSong, playList} = useSelector(state => ({
+        currentSong: state.PlayReducer.get('currentSong'),
+        playList: state.PlayReducer.get('playList'),
+    }), shallowEqual)
     const dispatch = useDispatch()
     useEffect(() => {
+
         if (currentSong) {
             dispatch(setAsyncCurrentSongAction(27808044))
         }
     }, [dispatch])
 
+
+    const {audioRef} = useAudio(currentSong.id)
+    const [lyric] = useLyric(currentSong.id)
 
     //播放
     const handlePlay = () => {
@@ -53,7 +64,6 @@ const PlayBar = () => {
         const playSchedule = (currentTime / (dt / 1000)) * 100
         setPlaySchedule(() => playSchedule)
     }
-
     const playSlider = (value) => {
 
         if (isPlaying) {
@@ -80,8 +90,13 @@ const PlayBar = () => {
         }
 
     }
-
-
+    //点击声音之后
+    const volumeSliderAfter = (value) => {
+        audioRef.current.volume = value / 100
+    }
+    const handleLayer = () => {
+        setLayState(layerState => !layerState)
+    }
     return (<>
         <div style={{height: '73px'}}>
             <PlayBarWrapper>
@@ -108,16 +123,30 @@ const PlayBar = () => {
                                 onAfterChange={playSliderAfter}/>
                         <div className={'sound-wrapper'}>
                             <Icon type={'icon-sound'} className={'btn'}/>
-                            <Slider value={30} className={'slider'}/>
+                            <Slider value={volumeSchedule} className={'slider'}
+                                    onChange={(value) => setVolumeSchedule(_ => value)}
+                                    onAfterChange={volumeSliderAfter}/>
                         </div>
                     </div>
                     <div className={'icon-group'}>
-                        <Icon type={'icon-cycleOne'} className={'btn'}/>
+                        <Icon type={'icon-cycleOne'} className={'btn'} onClick={handleLayer}/>
                         <Icon type={'icon-cycleOne'} className={'btn'}/>
                         <Icon type={'icon-cycleOne'} className={'btn'}/>
                     </div>
+
                     <audio ref={audioRef} onTimeUpdate={handlePlaying} preload="auto"/>
                 </div>
+                {
+                    layerState ?
+                        <Drawer maskClosable title={<DrawerTitle count={playList.length}/>} onClose={handleLayer}
+                                placement="bottom"
+                                closable={false}
+                                visible={layerState} className={'bar-drawer'}
+                                getContainer={false}>
+                            <BarPlayList playList={playList}/>
+                            <div style={{flex: 1}}>111</div>
+                        </Drawer> : ''
+                }
             </PlayBarWrapper>
         </div>
     </>)
